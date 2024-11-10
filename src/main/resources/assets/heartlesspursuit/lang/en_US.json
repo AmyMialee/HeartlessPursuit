@@ -1,0 +1,7 @@
+{
+  "heartlesspursuit.midnightconfig.title":"Heartless Pursuit Config",
+  "heartlesspursuit.midnightconfig.LEVEL_INTERVAL":"Set the level interval for how many levels should give hearts.",
+  "heartlesspursuit.midnightconfig.HEALTH_PER_INTERVAL":"Set how many hearts each level interval gives. (2 = 1 heart)",
+  "heartlesspursuit.midnightconfig.XP_STEAL_PERCENTAGE":"Set a percentage of how much XP you get from a kill. (0 = disabled)",
+  "heartlesspursuit.midnightconfig.SHOW_XP_MESSAGES":"Toggle XP Message."
+}
