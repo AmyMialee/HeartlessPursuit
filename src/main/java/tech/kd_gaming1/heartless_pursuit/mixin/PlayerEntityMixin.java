@@ -1,5 +1,7 @@
 package tech.kd_gaming1.heartless_pursuit.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +15,21 @@ import tech.kd_gaming1.heartless_pursuit.HealthManager;
 public class PlayerEntityMixin {
     @Unique
     private int lastKnownXpLevel = -1;
+
+    @Unique
+    private boolean dropOriginalXp = true;
+
+    @Inject(method = "onDeath", at = @At("HEAD"))
+    private void onPlayerDeath(DamageSource source, CallbackInfo ci) {
+        // The player was killed by another player, so we don't want them to drop XP
+        // Reset the flag to allow normal XP dropping in other cases
+        dropOriginalXp = !(source.getAttacker() instanceof ServerPlayerEntity);
+    }
+
+    @ModifyReturnValue(method = "getXpToDrop", at = @At("TAIL"))
+    private int changeXpToDrop(int original) {
+        return dropOriginalXp ? original : 0;
+    }
 
     // Monitor experience level in the tick method
     @Inject(method = "tick", at = @At("HEAD"))

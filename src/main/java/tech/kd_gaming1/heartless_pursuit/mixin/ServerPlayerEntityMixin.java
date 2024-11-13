@@ -11,7 +11,6 @@ import tech.kd_gaming1.heartless_pursuit.event.PlayerKillPlayerCallback;
 
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin {
-
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;getPrimeAdversary()Lnet/minecraft/entity/LivingEntity;"), method = "onDeath")
     private void onPlayerKilled(DamageSource source, CallbackInfo ci) {
         Entity attacker = source.getAttacker();
@@ -19,5 +18,4 @@ public class ServerPlayerEntityMixin {
             PlayerKillPlayerCallback.EVENT.invoker().killPlayer(player, (ServerPlayerEntity) (Object) this);
         }
     }
-
 }

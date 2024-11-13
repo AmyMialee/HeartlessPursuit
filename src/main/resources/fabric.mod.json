@@ -7,7 +7,7 @@
   "authors": [],
   "contact": {},
   "license": "BSD-3-Clause",
-  "icon": "assets/heartless_pursuit/icon.png",
+  "icon": "assets/heartlesspursuit/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
