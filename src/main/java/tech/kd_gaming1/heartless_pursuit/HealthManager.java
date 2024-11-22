@@ -32,9 +32,9 @@ public class HealthManager {
             // Only update if the health value would be different
             if (healthAttribute.getBaseValue() != totalHealth) {
                 healthAttribute.setBaseValue(totalHealth);
-            } else {
-                LOGGER.error("[HeartlessPursuit] Failed to get health attribute for player {}", player.getName().getString());
             }
+        } else {
+            LOGGER.error("[HeartlessPursuit] Failed to get health attribute for player {}", player.getName().getString());
         }
     }
 }

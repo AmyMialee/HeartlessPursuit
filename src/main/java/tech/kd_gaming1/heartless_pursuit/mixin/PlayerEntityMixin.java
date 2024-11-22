@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tech.kd_gaming1.heartless_pursuit.HealthManager;
+import tech.kd_gaming1.heartless_pursuit.TabListManager;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
@@ -43,6 +44,8 @@ public class PlayerEntityMixin {
             if (currentLevel != lastKnownXpLevel) {
                 // Call HealthManager to update health based on the new level
                 HealthManager.updatePlayerHealth((ServerPlayerEntity) player);
+                // Call TabListManager to update the tab list
+                TabListManager.onXpLevelChange((ServerPlayerEntity) player);
                 lastKnownXpLevel = currentLevel; // Update last known level
             }
         }

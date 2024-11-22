@@ -16,6 +16,7 @@ public class HeartlessPursuit implements ModInitializer {
     public void onInitialize() {
         MidnightConfig.init(MOD_ID, HeartlessPursuitConfig.class);
         PlayerStealXP.init();
+        TabListManager.register();
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             ListPlayerLevelsCommand.register(dispatcher);
         });
