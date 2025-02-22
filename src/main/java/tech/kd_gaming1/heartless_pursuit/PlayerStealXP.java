@@ -5,9 +5,16 @@ import net.minecraft.text.Text;
 import tech.kd_gaming1.heartless_pursuit.config.HeartlessPursuitConfig;
 import tech.kd_gaming1.heartless_pursuit.event.PlayerKillPlayerCallback;
 
+import static tech.kd_gaming1.heartless_pursuit.config.HeartlessPursuitConfig.SHOW_TAB_INDICATOR;
+
 public class PlayerStealXP {
     public static void init() {
         PlayerKillPlayerCallback.EVENT.register((killer, victim) -> {
+            // Skip XP steal if disabled in config
+            if (HeartlessPursuitConfig.DISABLE_XP_STEAL) {
+                return;
+            }
+
             // Get the victim's XP level and progress
             int victimLevel = victim.experienceLevel;
             int totalXP = getTotalXP(victim, victimLevel);

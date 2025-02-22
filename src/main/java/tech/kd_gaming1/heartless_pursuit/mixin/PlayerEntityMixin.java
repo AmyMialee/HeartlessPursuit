@@ -27,7 +27,7 @@ public class PlayerEntityMixin {
         dropOriginalXp = !(source.getAttacker() instanceof ServerPlayerEntity);
     }
 
-    @ModifyReturnValue(method = "getXpToDrop", at = @At("TAIL"))
+    @ModifyReturnValue(method = "getExperienceToDrop", at = @At("TAIL"))
     private int changeXpToDrop(int original) {
         return dropOriginalXp ? original : 0;
     }

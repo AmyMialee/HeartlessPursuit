@@ -5,8 +5,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import static tech.kd_gaming1.heartless_pursuit.HeartlessPursuit.LOGGER;
-import static tech.kd_gaming1.heartless_pursuit.config.HeartlessPursuitConfig.HEALTH_PER_INTERVAL;
-import static tech.kd_gaming1.heartless_pursuit.config.HeartlessPursuitConfig.LEVEL_INTERVAL;
+import static tech.kd_gaming1.heartless_pursuit.config.HeartlessPursuitConfig.*;
 
 public class HealthManager {
     // Base health is 20 (10 hearts)
@@ -24,6 +23,11 @@ public class HealthManager {
         int intervals = playerLevel / LEVEL_INTERVAL;
         // Calculate total health (base + bonus)
         double totalHealth = BASE_HEALTH + (intervals * HEALTH_PER_INTERVAL);
+
+        // Clamp health to max range if specified
+        if (MAX_RANGE_OF_HEARTS > 0) {
+            totalHealth = Math.min(totalHealth, MAX_RANGE_OF_HEARTS);
+        }
 
         // Get the player's health attribute
         EntityAttributeInstance healthAttribute = player.getAttributeInstance(EntityAttributes.MAX_HEALTH);
